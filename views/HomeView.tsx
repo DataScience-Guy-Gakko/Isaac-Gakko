@@ -50,7 +50,7 @@ const HomeView: React.FC<HomeViewProps> = ({ user }) => {
     <div className="p-6 md:p-10 animate-in fade-in duration-500">
       <header className="flex justify-between items-center mb-10">
         <div>
-          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Welcome, {user.name.split(' ')[0]}!</h1>
+          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Kedu, {user.name.split(' ')[0]}!</h1>
           <p className="text-slate-500 mt-1">Master your subjects with verified peer experts.</p>
         </div>
         <button className="p-3 bg-white border border-slate-200 shadow-sm rounded-2xl relative hover:bg-slate-50 transition-colors">
@@ -69,7 +69,7 @@ const HomeView: React.FC<HomeViewProps> = ({ user }) => {
           </div>
           <div className="bg-emerald-500 p-6 rounded-[32px] text-white shadow-emerald-200 shadow-xl">
             <Star className="mb-4" size={24} />
-            <p className="text-xs font-medium opacity-80 uppercase tracking-widest">Global Rank</p>
+            <p className="text-xs font-medium opacity-80 uppercase tracking-widest">Campus Rank</p>
             <p className="text-3xl font-black mt-1">Top 5%</p>
           </div>
         </div>
@@ -178,8 +178,12 @@ const HomeView: React.FC<HomeViewProps> = ({ user }) => {
                   <img src={`https://picsum.photos/seed/tutor_side${i}/100`} alt="Tutor" className="object-cover w-full h-full" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-bold text-sm text-slate-900">Dr. Emily Watts</h4>
-                  <p className="text-[10px] text-slate-500 font-medium">Neuroscience Specialist</p>
+                  <h4 className="font-bold text-sm text-slate-900">
+                    {i === 1 ? 'Dr. Chinelo Obi' : i === 2 ? 'Prof. Ibrahim Yusuf' : 'Zainab Dahiru'}
+                  </h4>
+                  <p className="text-[10px] text-slate-500 font-medium">
+                    {i === 1 ? 'Neuroscience' : i === 2 ? 'Applied Physics' : 'Economics'}
+                  </p>
                 </div>
                 <div className="flex items-center text-amber-500 text-xs font-black">
                   <Star size={12} fill="currentColor" className="mr-1" />

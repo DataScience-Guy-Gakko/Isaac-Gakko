@@ -4,11 +4,11 @@ import { Search, Filter, Star, CheckCircle, ChevronRight, BookOpen, BadgeCheck, 
 import { geminiService } from '../services/geminiService';
 
 const MOCK_TUTORS = [
-  { id: 't1', name: 'Dr. Sarah Smith', major: 'Physics', rating: 4.9, reviews: 128, price: '$25/hr', subjects: ['Physics', 'Calculus'], avatar: 'sarah', isVerified: true },
-  { id: 't2', name: 'Marcus Chen', major: 'CompSci', rating: 4.8, reviews: 45, price: '$20/hr', subjects: ['Data Structures', 'Python'], avatar: 'marcus', isVerified: true },
-  { id: 't3', name: 'Elena Rodriguez', major: 'Biology', rating: 5.0, reviews: 32, price: '$22/hr', subjects: ['Organic Chemistry', 'Biology'], avatar: 'elena', isVerified: false },
-  { id: 't4', name: 'Liam Wilson', major: 'History', rating: 4.7, reviews: 89, price: '$18/hr', subjects: ['World History', 'Essays'], avatar: 'liam', isVerified: true },
-  { id: 't5', name: 'Sophia Kim', major: 'Mathematics', rating: 4.9, reviews: 210, price: '$30/hr', subjects: ['Linear Algebra', 'Stats'], avatar: 'sophia', isVerified: true },
+  { id: 't1', name: 'Dr. Ngozi Eze', major: 'Physics', rating: 4.9, reviews: 128, price: '₦5,000/hr', subjects: ['Physics', 'Calculus'], avatar: 'ngozi', isVerified: true },
+  { id: 't2', name: 'Tunde Bakare', major: 'CompSci', rating: 4.8, reviews: 45, price: '₦4,000/hr', subjects: ['Data Structures', 'Python'], avatar: 'tunde', isVerified: true },
+  { id: 't3', name: 'Ifeoma Okoro', major: 'Biology', rating: 5.0, reviews: 32, price: '₦4,500/hr', subjects: ['Organic Chemistry', 'Biology'], avatar: 'ifeoma', isVerified: false },
+  { id: 't4', name: 'Abubakar Musa', major: 'History', rating: 4.7, reviews: 89, price: '₦3,500/hr', subjects: ['Nigerian History', 'Essays'], avatar: 'abubakar', isVerified: true },
+  { id: 't5', name: 'Amina Bello', major: 'Mathematics', rating: 4.9, reviews: 210, price: '₦6,000/hr', subjects: ['Linear Algebra', 'Stats'], avatar: 'amina', isVerified: true },
 ];
 
 const ExploreView: React.FC = () => {

@@ -6,12 +6,12 @@ const ScheduleView: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'UPCOMING' | 'PAST'>('UPCOMING');
 
   const upcomingSessions = [
-    { id: '1', title: 'Calculus II Deep Dive', tutor: 'Sarah Smith', time: 'Today, 2:00 PM', duration: '60 min', type: 'Online' },
-    { id: '2', title: 'Python Basics', tutor: 'Marcus Chen', time: 'Tomorrow, 10:30 AM', duration: '45 min', type: 'Library Room 4' },
+    { id: '1', title: 'Calculus II Deep Dive', tutor: 'Ngozi Eze', time: 'Today, 2:00 PM', duration: '60 min', type: 'Online' },
+    { id: '2', title: 'Python Basics', tutor: 'Tunde Bakare', time: 'Tomorrow, 10:30 AM', duration: '45 min', type: 'Jaja Hall Study Room' },
   ];
 
   const pastSessions = [
-    { id: '3', title: 'Macroeconomics Intro', tutor: 'John Doe', time: 'Last Tuesday', duration: '60 min', type: 'Online' },
+    { id: '3', title: 'Macroeconomics Intro', tutor: 'Chidi Okafor', time: 'Last Tuesday', duration: '60 min', type: 'Online' },
   ];
 
   const sessions = activeTab === 'UPCOMING' ? upcomingSessions : pastSessions;

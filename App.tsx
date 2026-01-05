@@ -9,16 +9,16 @@ import ScheduleView from './views/ScheduleView';
 import MessagesView from './views/MessagesView';
 import ProfileView from './views/ProfileView';
 
-// Mock Current User
+// Mock Current User - Updated to Nigerian Identity
 const MOCK_USER: User = {
   id: 'u1',
-  name: 'Alex Johnson',
-  avatar: 'https://picsum.photos/seed/alex/200',
+  name: 'Adebayo Olumide',
+  avatar: 'https://picsum.photos/seed/adebayo/200',
   role: UserRole.STUDENT,
-  institution: 'State University',
+  institution: 'University of Lagos',
   major: 'Computer Science',
   rating: 4.8,
-  bio: 'Junior CS major looking to master Algorithms and Data Structures.',
+  bio: 'Final year CS student at Unilag. Passionate about Algorithms and Backend Dev.',
   subjects: ['Calculus', 'Python', 'Algorithms'],
   isVerified: false
 };

@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { Search, Send, ArrowLeft, MoreVertical, Paperclip } from 'lucide-react';
 
 const MOCK_CHATS = [
-  { id: '1', name: 'Sarah Smith', lastMessage: 'Great work today on those integrals!', time: '2m ago', unread: 1, avatar: 'sarah' },
-  { id: '2', name: 'Marcus Chen', lastMessage: 'I sent you the Python script.', time: '1h ago', unread: 0, avatar: 'marcus' },
-  { id: '3', name: 'Elena Rodriguez', lastMessage: 'See you tomorrow at 4?', time: '3h ago', unread: 0, avatar: 'elena' },
+  { id: '1', name: 'Ngozi Eze', lastMessage: 'Great work today on those integrals!', time: '2m ago', unread: 1, avatar: 'ngozi' },
+  { id: '2', name: 'Tunde Bakare', lastMessage: 'I sent you the Python script.', time: '1h ago', unread: 0, avatar: 'tunde' },
+  { id: '3', name: 'Ifeoma Okoro', lastMessage: 'See you tomorrow at 4?', time: '3h ago', unread: 0, avatar: 'ifeoma' },
 ];
 
 const MessagesView: React.FC = () => {
@@ -41,7 +41,7 @@ const MessagesView: React.FC = () => {
           </div>
           <div className="flex items-start space-x-2 max-w-[80%]">
             <div className="bg-white border border-slate-200 p-3 rounded-2xl rounded-tl-none shadow-sm">
-              <p className="text-sm text-slate-800">Hi! Are we still on for the Calc session tomorrow at 4 PM?</p>
+              <p className="text-sm text-slate-800">Hi! Are we still on for the session tomorrow at 4 PM?</p>
               <span className="text-[10px] text-slate-400 block mt-1">10:45 AM</span>
             </div>
           </div>
