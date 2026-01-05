@@ -1,0 +1,8 @@
+{
+  "name": "AcademiaConnect - Peer Tutoring",
+  "description": "A comprehensive peer-to-peer academic tutoring platform connecting students with verified tutors for collaborative learning and progress tracking.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
