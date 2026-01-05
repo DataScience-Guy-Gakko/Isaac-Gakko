@@ -1,8 +1,9 @@
 
 import React, { useState } from 'react';
-import { Bell, BookOpen, Clock, Star, BrainCircuit, X, Sparkles } from 'lucide-react';
+import { Bell, BookOpen, Star, BrainCircuit, X, Sparkles, Mic } from 'lucide-react';
 import { User, Session } from '../types';
 import { geminiService } from '../services/geminiService';
+import { LiveAssistant } from '../components/LiveAssistant';
 
 interface HomeViewProps {
   user: User;
@@ -19,27 +20,16 @@ const MOCK_SESSIONS: Session[] = [
     duration: 60,
     status: 'UPCOMING',
     topic: 'Graph Algorithms'
-  },
-  {
-    id: 's2',
-    studentId: 'u1',
-    tutorId: 't5',
-    subject: 'Linear Algebra',
-    date: 'Tomorrow',
-    time: '11:00 AM',
-    duration: 45,
-    status: 'UPCOMING',
-    topic: 'Eigenvalues'
   }
 ];
 
 const HomeView: React.FC<HomeViewProps> = ({ user }) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [studyGuide, setStudyGuide] = useState<string | null>(null);
+  const [isLiveOpen, setIsLiveOpen] = useState(false);
 
   const handleGenerateGuide = async () => {
     setIsGenerating(true);
-    // Use the first upcoming session as context
     const session = MOCK_SESSIONS[0];
     const guide = await geminiService.generateStudyGuide(session.subject, session.topic);
     setStudyGuide(guide);
@@ -47,7 +37,7 @@ const HomeView: React.FC<HomeViewProps> = ({ user }) => {
   };
 
   return (
-    <div className="p-6 md:p-10 animate-in fade-in duration-500">
+    <div className="p-6 md:p-10 animate-in fade-in duration-500 relative">
       <header className="flex justify-between items-center mb-10">
         <div>
           <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Kedu, {user.name.split(' ')[0]}!</h1>
@@ -60,7 +50,6 @@ const HomeView: React.FC<HomeViewProps> = ({ user }) => {
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
-        {/* Stats Column */}
         <div className="grid grid-cols-2 gap-4">
           <div className="bg-indigo-600 p-6 rounded-[32px] text-white shadow-indigo-200 shadow-xl">
             <BookOpen className="mb-4" size={24} />
@@ -74,7 +63,6 @@ const HomeView: React.FC<HomeViewProps> = ({ user }) => {
           </div>
         </div>
 
-        {/* AI Assistant Card */}
         <div className="bg-white border-2 border-indigo-100 p-6 rounded-[32px] relative overflow-hidden group shadow-sm">
           <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
             <BrainCircuit size={80} className="text-indigo-600" />
@@ -103,41 +91,12 @@ const HomeView: React.FC<HomeViewProps> = ({ user }) => {
         </div>
       </div>
 
-      {/* Study Guide Modal/Display */}
-      {studyGuide && (
-        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-          <div className="bg-white w-full max-w-lg rounded-[40px] p-8 shadow-2xl relative animate-in zoom-in duration-300">
-            <button onClick={() => setStudyGuide(null)} className="absolute top-6 right-6 p-2 bg-slate-100 rounded-full text-slate-500 hover:bg-slate-200">
-              <X size={20} />
-            </button>
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="bg-indigo-600 p-2 rounded-xl text-white">
-                <Sparkles size={24} />
-              </div>
-              <div>
-                <h3 className="text-2xl font-black text-slate-900 leading-none">Flash Guide</h3>
-                <p className="text-slate-500 text-sm mt-1">{MOCK_SESSIONS[0].topic}</p>
-              </div>
-            </div>
-            <div className="prose prose-slate max-h-[60vh] overflow-y-auto no-scrollbar whitespace-pre-wrap text-slate-700 text-sm leading-relaxed bg-slate-50 p-6 rounded-3xl border border-slate-100">
-              {studyGuide}
-            </div>
-            <button onClick={() => setStudyGuide(null)} className="w-full mt-6 py-4 bg-indigo-600 text-white rounded-2xl font-bold hover:shadow-lg hover:shadow-indigo-200 transition-all">
-              Got it, let's learn!
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Responsive Section Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-        {/* Upcoming Sessions - Main Content */}
         <section className="lg:col-span-2">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-slate-900">Upcoming Sessions</h2>
             <button className="text-indigo-600 text-sm font-bold hover:underline">View Calendar</button>
           </div>
-          
           <div className="space-y-4">
             {MOCK_SESSIONS.map((session) => (
               <div key={session.id} className="group bg-white border border-slate-200 p-6 rounded-[32px] hover:border-indigo-300 hover:shadow-xl hover:shadow-slate-200/50 transition-all">
@@ -166,7 +125,6 @@ const HomeView: React.FC<HomeViewProps> = ({ user }) => {
           </div>
         </section>
 
-        {/* Sidebar recommendations */}
         <section>
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold text-slate-900">Top Rated</h2>
@@ -194,6 +152,42 @@ const HomeView: React.FC<HomeViewProps> = ({ user }) => {
           </div>
         </section>
       </div>
+
+      {/* Floating AI Assistant Button */}
+      <button 
+        onClick={() => setIsLiveOpen(true)}
+        className="fixed bottom-24 right-6 md:bottom-10 md:right-10 w-16 h-16 bg-indigo-600 text-white rounded-full shadow-2xl shadow-indigo-200 flex items-center justify-center active:scale-90 transition-transform z-[150] hover:bg-indigo-700"
+      >
+        <Mic size={28} />
+        <span className="absolute -top-1 -right-1 flex h-4 w-4">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-4 w-4 bg-emerald-500"></span>
+        </span>
+      </button>
+
+      {studyGuide && (
+        <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-lg rounded-[40px] p-8 shadow-2xl relative animate-in zoom-in duration-300">
+            <button onClick={() => setStudyGuide(null)} className="absolute top-6 right-6 p-2 bg-slate-100 rounded-full text-slate-500 hover:bg-slate-200">
+              <X size={20} />
+            </button>
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="bg-indigo-600 p-2 rounded-xl text-white">
+                <Sparkles size={24} />
+              </div>
+              <h3 className="text-2xl font-black text-slate-900">Flash Guide</h3>
+            </div>
+            <div className="prose prose-slate max-h-[60vh] overflow-y-auto p-6 rounded-3xl border border-slate-100 bg-slate-50 whitespace-pre-wrap text-sm">
+              {studyGuide}
+            </div>
+            <button onClick={() => setStudyGuide(null)} className="w-full mt-6 py-4 bg-indigo-600 text-white rounded-2xl font-bold">
+              Done
+            </button>
+          </div>
+        </div>
+      )}
+
+      <LiveAssistant isOpen={isLiveOpen} onClose={() => setIsLiveOpen(false)} />
     </div>
   );
 };
